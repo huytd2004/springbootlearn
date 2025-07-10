@@ -11,7 +11,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ResponseStatusException.class)
+    @ExceptionHandler(ResponseStatusException.class) // This method handles exceptions of type ResponseStatusException
     public ResponseEntity<Map<String, String>> handleResponseStatusException(ResponseStatusException ex) {
         return ResponseEntity
                 .status(ex.getStatusCode())

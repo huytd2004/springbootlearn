@@ -46,11 +46,24 @@ public class AuthenticationService {
     }
     // Phương thức này xử lý việc xác thực người dùng khi đăng nhập.
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword())
-        ); // Sử dụng AuthenticationManager để xác thực người dùng với tên đăng nhập và mật khẩu đã cung cấp
+//        authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(
+//                        request.getUsername(),
+//                        request.getPassword())
+//        ); // Sử dụng AuthenticationManager để xác thực người dùng với tên đăng nhập và mật khẩu đã cung cấp nhưng khó hiển thị thông tin lỗi trả về
+        //Gỉai phap: Sử dụng try-catch để bắt lỗi và trả về thông báo lỗi rõ ràng hơn
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getUsername(),
+                            request.getPassword())
+            );
+        } catch (Exception e) {
+            throw new ResponseStatusException(
+                    HttpStatus.UNAUTHORIZED,
+                    "Invalid username or password"
+            );
+        }
         var user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,

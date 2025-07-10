@@ -10,7 +10,6 @@
   "username": "tdhuy3",
   "password": "123456"
   }
--Học các viết exception, respond entity, ..., viết exception cho authenticationManager, logout
 
 
 
