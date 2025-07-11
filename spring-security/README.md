@@ -10,7 +10,10 @@
   "username": "tdhuy3",
   "password": "123456"
   }
+- http://localhost:8080/oauth2/authorization/google
+- get http://localhost:8080/api/v1/auth/user
 
+- Xử lý phân quyền phần lưu role vào authtoken, hiểu được cách nó so sánh
 
 
 Để học **Backend với Spring Boot**, bạn có thể đi theo lộ trình sau, từ cơ bản đến nâng cao:
