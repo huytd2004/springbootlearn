@@ -52,6 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         null, // Không cần mật khẩu trong token xác thực
                         userDetails.getAuthorities()
                 ); // Tạo một đối tượng UsernamePasswordAuthenticationToken với thông tin người dùng và quyền hạn của họ
+                System.out.println(authToken); //test lấy thông tin
                 authToken.setDetails( // gắn thêm thông tin phụ của request như ip,...
                         new WebAuthenticationDetailsSource().buildDetails(request)
                 );

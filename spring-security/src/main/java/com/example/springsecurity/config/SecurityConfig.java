@@ -29,15 +29,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         //Dùng để cấu hình bảo mật cho ứng dụng Spring Security, được gọi trước mỗi yêu cầu HTTP.
         http
-                .csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/**","/h2-console/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                .and()
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class) // Thêm bộ lọc JwtAuthenticationFilter trước bộ lọc UsernamePasswordAuthenticationFilter để xử lý xác thực JWT
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/v1/auth/**", "/h2-console/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                )
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)// Thêm bộ lọc JwtAuthenticationFilter trước bộ lọc UsernamePasswordAuthenticationFilter để xử lý xác thực JWT
                 .oauth2Login(oauth2 -> oauth2
                         .defaultSuccessUrl("/api/v1/auth/userinfo", true)
                         .userInfoEndpoint(userInfo -> userInfo // Cấu hình điểm cuối thông tin người dùng OAuth2

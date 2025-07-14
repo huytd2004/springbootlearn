@@ -11,9 +11,9 @@
   "password": "123456"
   }
 - http://localhost:8080/oauth2/authorization/google
-- get http://localhost:8080/api/v1/auth/user
+- get http://localhost:8080/api/v1/users/user
 
-- Xử lý phân quyền phần lưu role vào authtoken, hiểu được cách nó so sánh
+- Thêm phần accessToken và refreshToken, Phần google oauth2 chưa hoàn thiện(khi gặp lỗi thì hiện trang whitelabel,...)
 
 
 Để học **Backend với Spring Boot**, bạn có thể đi theo lộ trình sau, từ cơ bản đến nâng cao:

@@ -34,13 +34,8 @@ public class AuthenticationController {
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(authenticationService.authenticate(request));
     }
-    // Endpoint chỉ dành cho người dùng có vai trò ROLE_USER
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @GetMapping("/user")
-    @ResponseBody
-    public String userEndpoint() {
-        return "Welcome, " + "! You are authorized as ROLE_USER.";
-    }
+
+
     @GetMapping("/userinfo")
     public UserInfo getUserInfo(@AuthenticationPrincipal OAuth2User principal) {
         UserInfo userInfo = new UserInfo();
